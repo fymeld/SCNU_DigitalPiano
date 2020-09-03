@@ -161,7 +161,8 @@ CLEAR:	MOV DX,MY8255_B 			;清屏子程序
 		OUT DX,AL
 		RET		
 		
-DIS:	PUSH AX						;显示子程序
+DIS:	PUSH AX  		;显示子程序
+		PUSH SI
 		MOV SI,OFFSET LED
 		MOV DL,0DFH
 		MOV AL,DL
@@ -184,7 +185,9 @@ AGAIN:	PUSH DX
 		ROR AL,1
 		MOV DL,AL
 		JMP AGAIN
-OUT1:	POP AX
+OUT1:	
+	POP SI
+	POP AX
 		RET
 		
 DALLY:	PUSH CX						;延时子程序
